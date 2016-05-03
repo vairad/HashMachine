@@ -34,7 +34,8 @@ uint64_t LocalCFile::getBytesCount(){
  */
 uint8_t LocalCFile::getByte(){
     uint8_t tmp;
-    fread(&tmp, 1, 1, file);
+    size_t readed = fread(&tmp, 1, 1, file);
+    std::cerr << name << " readed " << readed << " bytes" << std::endl;
     return tmp;
 }
 

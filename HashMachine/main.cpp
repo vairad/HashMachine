@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <cstring>
 
 #include "ifile.h"
@@ -24,7 +25,7 @@ char *hashAlgorithm = "sha512";
 void readArguments(int argc, char *argv[]){
     //zpracovani prepinacu
     for (int i = 1; i < argc; i++) {
-        if (argv[i][0] == '-' || argv[i][0] == '/') {
+        if (argv[i][0] == '-') {
             switch (argv[i][1]) {
                 case 'h': //help musi byt prvni ... uchova vychozi nastaveni stavu spusteni
                 case 'H':
@@ -34,6 +35,7 @@ void readArguments(int argc, char *argv[]){
                 case 'F':
                         filename = (char *)malloc(strlen(&argv[i][2]));
                         strcpy(filename, &argv[i][2]);
+                        fileIsSet = true;
                         break;
                 case 't':
                 case 'T':
@@ -93,6 +95,12 @@ int runConsoleApp(int argc, char *argv[]){
     IHashStandard *machine;
     prepareHashStandard(&machine);
 
+    if(!fileIsSet){
+        delete machine;
+        std::cout << "File was not set" << std::endl;
+        return 3;
+    }
+
     IFile *file = new LocalCFile(filename);
     if(file->isOk()){
         std::string *hash = machine->hash(file);
@@ -100,16 +108,30 @@ int runConsoleApp(int argc, char *argv[]){
         delete hash;
     }else{
         std::cout << "File "<< filename <<" is not readable" << std::endl;
+        delete machine;
+        delete file;
+        return 5;
     }
 
 //clean memory
     delete machine;
     delete file;
+    return 0;
 }
 
 //====================================================================================================
 
 int main(int argc, char *argv[]) {
-    return runConsoleApp(argc, argv);
+
+    std::ofstream out("out.log");
+    std::streambuf *cerrbuf = std::cerr.rdbuf();
+    std::cerr.rdbuf(out.rdbuf()); //redirect std::cerr to out.log
+
+    int retVal = runConsoleApp(argc, argv); // run aplication
+
+    out.flush();
+    std::cerr.rdbuf(cerrbuf);
+
+    return retVal;
 }
 
