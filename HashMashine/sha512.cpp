@@ -76,10 +76,10 @@ void Sha512::computePadding(){
 
     zeroBytesCount = zeros / 8;
     restZeroBytes = zeroBytesCount;
-    std::cerr << name << "zeros to be placed" << zeros << "without margin space 8bit";
+    std::cerr << name << " zeros to be placed " << zeros << " without margin space 8bit" << std::endl;
 
     msgBlocks = (msgBits + space + ending + zeros) / 1024;
-    std::cerr << name << "msg block count" << msgBlocks;
+    std::cerr << name << " msg block count " << msgBlocks << std::endl;
 }
 
 /**
@@ -126,7 +126,7 @@ void Sha512::prepareNextMsgBlock(){
             messageBlock[i] = msgBits;
         }
     }
-    std::cerr << name << "message ready";
+    std::cerr << name << " message ready "<< std::endl;
 }
 
 /**
@@ -142,6 +142,7 @@ uint8_t Sha512::nextMessageByte(){
     }else if(!spaceWritten && restZeroBytes == zeroBytesCount){// je zapsáno zarovnání?
         out = space;
         spaceWritten = true;
+        std::cerr << name << " space was written " << std::endl;
     }else if(restZeroBytes > 0){ // esistují nuly k zapsání?
         out = 0;
         restZeroBytes--;
@@ -202,7 +203,6 @@ void Sha512::prepareOutString(){
         stream << std::setw(16) << std::setfill('0') << std::hex << H[i];        
     }
     outHash = new std::string( stream.str() );
-    outHash->append("\n");
 }
 
 //=======================================================================================
@@ -219,16 +219,16 @@ std::string *Sha512::hash(IFile *file){
 // compute msg bits
     msgBytes = file->getBytesCount();
     restMsgBytes = msgBytes;
-    std::cerr << name << "msg byte count" << msgBytes;
+    std::cerr << name << " msg byte count " << msgBytes << std::endl;
 
     uint64_t uintMax = 0xffffffffffffffff; // kontrola, zda soubor není nad možnosti tohoto alg
     if( (uintMax / 8) <= msgBytes ){
-        std::cerr << name << "WARNING" << "possible problem with byte numbers";
+        std::cerr << name << " WARNING " << " possible problem with msg length "<< std::endl;
     }
 
 //compute bits
     this->msgBits = file->getBytesCount()*8;
-    std::cerr << name << "msg bits count" << msgBits;
+    std::cerr << name << " msg bits count " << msgBits << std::endl;
 
 //compute padding constants of message
     computePadding();

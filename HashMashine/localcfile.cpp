@@ -8,9 +8,9 @@
 LocalCFile::LocalCFile(char *path){
    file = fopen(path,"r");
    if(file != NULL){
-       std::cerr << name << " file " << path << " was open" << std::endl;
+       std::cerr << name << " file " << path << " was opened" << std::endl;
    }else{
-       std::cerr << name << " file " << path << " was NOT open" << std::endl;
+       std::cerr << name << " file " << path << " was NOT opened" << std::endl;
    }
    fseek(file, 0, SEEK_END);
    byteCount = ftell(file);
