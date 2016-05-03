@@ -2,6 +2,7 @@
 #define LOCALCFILE_H
 
 #include <cstdio>
+#include <iostream>
 
 #include "ifile.h"
 

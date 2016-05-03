@@ -1,6 +1,6 @@
 #include "sha512.h"
 
-#include <QtDebug>
+#include <iostream>
 #include <iomanip>
 #include <sstream>
 
@@ -76,10 +76,10 @@ void Sha512::computePadding(){
 
     zeroBytesCount = zeros / 8;
     restZeroBytes = zeroBytesCount;
-    qInfo() << name << "zeros to be placed" << zeros << "without margin space 8bit";
+    std::cerr << name << "zeros to be placed" << zeros << "without margin space 8bit";
 
     msgBlocks = (msgBits + space + ending + zeros) / 1024;
-    qInfo() << name << "msg block count" << msgBlocks;
+    std::cerr << name << "msg block count" << msgBlocks;
 }
 
 /**
@@ -126,7 +126,7 @@ void Sha512::prepareNextMsgBlock(){
             messageBlock[i] = msgBits;
         }
     }
-    qInfo() << name << "message ready";
+    std::cerr << name << "message ready";
 }
 
 /**
@@ -219,16 +219,16 @@ std::string *Sha512::hash(IFile *file){
 // compute msg bits
     msgBytes = file->getBytesCount();
     restMsgBytes = msgBytes;
-    qInfo() << name << "msg byte count" << msgBytes;
+    std::cerr << name << "msg byte count" << msgBytes;
 
     uint64_t uintMax = 0xffffffffffffffff; // kontrola, zda soubor není nad možnosti tohoto alg
     if( (uintMax / 8) <= msgBytes ){
-        qInfo() << name << "WARNING" << "possible problem with byte numbers";
+        std::cerr << name << "WARNING" << "possible problem with byte numbers";
     }
 
 //compute bits
     this->msgBits = file->getBytesCount()*8;
-    qInfo() << name << "msg bits count" << msgBits;
+    std::cerr << name << "msg bits count" << msgBits;
 
 //compute padding constants of message
     computePadding();

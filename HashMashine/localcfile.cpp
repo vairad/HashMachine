@@ -7,9 +7,15 @@
  */
 LocalCFile::LocalCFile(char *path){
    file = fopen(path,"r");
+   if(file != NULL){
+       std::cerr << name << " file " << path << " was open" << std::endl;
+   }else{
+       std::cerr << name << " file " << path << " was NOT open" << std::endl;
+   }
    fseek(file, 0, SEEK_END);
    byteCount = ftell(file);
    fseek(file, 0, SEEK_SET);
+   std::cerr << name << " file " << path << " is " << byteCount << " long " << std::endl;
 }
 
 /**
