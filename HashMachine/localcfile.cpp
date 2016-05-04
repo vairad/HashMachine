@@ -2,7 +2,6 @@
 
 /**
  * Konstruktor otevře soubor a nastaví základní proměnné.
- *
  * @param path cesta k souboru
  */
 LocalCFile::LocalCFile(char *path){
@@ -20,7 +19,6 @@ LocalCFile::LocalCFile(char *path){
 
 /**
  * Vrátí počet bytů v souboru
- *
  * @return 64bit number
  */
 uint64_t LocalCFile::getBytesCount(){
@@ -29,7 +27,6 @@ uint64_t LocalCFile::getBytesCount(){
 
 /**
  * Přečte jeden další byte ze souboru.
- *
  * @return 8bit number
  */
 uint8_t LocalCFile::getByte(){
@@ -41,7 +38,6 @@ uint8_t LocalCFile::getByte(){
 
 /**
  * Kontroluje, zda je lze ze souboru číst.
- *
  * @return zda lze soubor číst
  */
 bool LocalCFile::isOk(){

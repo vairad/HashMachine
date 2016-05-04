@@ -16,9 +16,9 @@
  */
 class LocalCFile : public IFile
 {
-    const char *name = "LocalCFile:";
-    FILE *file;
-    uint64_t byteCount;
+    const char *name = "LocalCFile:"; //log name
+    FILE *file; //file storage
+    uint64_t byteCount; // bytecount storage
 
 public:
     LocalCFile(char* path);

@@ -9,7 +9,7 @@
 
 class Sha512 : public IHashStandard
 {
-    const char *name = "Sha256:";
+    const char *name = "Sha256:"; //log name
 
     /* konstants from standard */
     const uint64_t K[80] =
@@ -55,19 +55,19 @@ class Sha512 : public IHashStandard
     const uint8_t space = 1<<7; //prepare space for sha ... binary  1000 0000
     bool spaceWritten = false;
 
-    uint32_t msgBlocks;
-    uint64_t msgBytes;
-    uint64_t msgBits;
-    uint32_t zeroBytesCount;
+    uint32_t msgBlocks; //count of 1024bit blocks
+    uint64_t msgBytes;  //count of no aligned message bytes
+    uint64_t msgBits;   // count of no aligned message bits
+    uint32_t zeroBytesCount; //count of zero bytes to pad message
 
-    uint32_t restMsgBytes;
-    uint32_t restZeroBytes;
-    uint32_t lastMsgBlock = 0;
-    uint64_t lastWord;
+    uint32_t restMsgBytes; //message bytes to read
+    uint32_t restZeroBytes; // zero bytes to read
+    uint32_t lastMsgBlock = 0; //index of last message block
 
-    IFile *file;
 
-    std::string *outHash;
+    IFile *file; //link to IFile
+
+    std::string *outHash; //storage for msg
 
     /* output vector */
     uint64_t H[8] = {0, 0, 0, 0,

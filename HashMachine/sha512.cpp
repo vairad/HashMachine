@@ -6,10 +6,9 @@
 
 /**
  * Metoda rotuje bity v 64bitovém slově směrem vlevo.
- *
  * @param to_rotate word to rotate
  * @param step number of rotation steps
- * @return
+ * @return rotated number
  */
 uint64_t Sha512::rotateLeft(uint64_t to_rotate, uint8_t step) {
     return (to_rotate << step) | (to_rotate >> (64 - step) );
@@ -17,10 +16,9 @@ uint64_t Sha512::rotateLeft(uint64_t to_rotate, uint8_t step) {
 
 /**
  * Metoda rotuje bity v 64bitovém slově směrem vpravo.
- *
  * @param to_rotate word to rotate
  * @param step number of rotation steps
- * @return
+ * @return rotated number
  */
 uint64_t Sha512::rotateRight(uint64_t to_rotate, uint8_t step) {
     return (to_rotate >> step) | (to_rotate << (64 - step) );
@@ -61,7 +59,6 @@ uint64_t Sha512::smallSigma1(uint64_t x){
  * Po získání řešení nastaví stavové proměnné týkající se zarovnání zprávy:
  * @code{zeroBytesCount}, @code{restZeroBytes}, @code{msgBlocks}
  * Počet nul pro odsazení a počet bloků zprávy
- *
  */
 void Sha512::computePadding(){
     uint64_t space = 8;     //minimal length of one bit space

@@ -123,12 +123,15 @@ int runConsoleApp(int argc, char *argv[]){
 
 int main(int argc, char *argv[]) {
 
+//přesměrování std::err do souboru s logem
     std::ofstream out("out.log");
     std::streambuf *cerrbuf = std::cerr.rdbuf();
     std::cerr.rdbuf(out.rdbuf()); //redirect std::cerr to out.log
 
+//spust aplikaci
     int retVal = runConsoleApp(argc, argv); // run aplication
 
+//navrácení původní std::err
     out.flush();
     std::cerr.rdbuf(cerrbuf);
 

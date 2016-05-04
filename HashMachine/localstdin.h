@@ -6,30 +6,25 @@
 
 #include "ifile.h"
 
+/**
+ * Třída která implementuje IFile a jako vstup dat používá std::cin.
+ * Implementace přečte znaky do zadání enter.
+ *
+ * @author Radek VAIS
+ * @version 1.0.0
+ * @date 4.5.2016
+ */
 class LocalStdIn : public IFile
 {
-    std::string msg;
-    int i = 0;
+    const char *name = "LocalStdIn:"; // log name
+    std::string msg; //place to store message
+    uint64_t i = 0; // iterator
 
 public:
-    LocalStdIn();
+    LocalStdIn(); //working constructor !!
 
-    /**
-     * vrátí počet bytů souboru
-     * @return vrátí počet bytů souboru
-     */
     virtual uint64_t getBytesCount();
-
-    /**
-     * Vrátí následující byte souboru.
-     * @return následující byte souboru
-     */
     virtual uint8_t getByte();
-
-    /**
-     * Zkontroluje, zda lze číst ze souboru.
-     * @return zda lze ze souboru číst
-     */
     virtual bool isOk();
 };
 
