@@ -56,15 +56,15 @@ void printHelp(){
     std::cout << "Program HashMachine v1.0" << "\n";
     std::cout << "Semestrální práce KIV/BIT akademický rok 2015/16" << "\n";
     std::cout << "Program slouzi k výpočtu zvolených hash funkcí." << "\n";
-    std::cout << "Implementovány: SHA-512." << "\n";
+    std::cout << "Implementovány: SHA-512 (sha512)." << "\n";
     std::cout << "Radek VAIS" << "\n";
     std::cout << "\n";
     std::cout << "Napoveda ke spusteni:" << "\n";
     std::cout << "HashMachine [options]"<< "\n";
     std::cout << "Možné volby:"<< "\n";
     std::cout << "\t" << "-h - zobrazí nápovědu" << "\n";
-    std::cout << "\t" << "-t - nastaví typ hash funkce (výchozí sha512)"<< "\n";
-    std::cout << "\t" << "-f<filename> - nastavi cestu ke vstupnimu souboru"<< "\n";
+    std::cout << "\t" << "-t<type> - nastaví typ hash funkce (výchozí sha512)"<< "\n";
+    std::cout << "\t" << "-f<filename> - nastavi cestu ke vstupnimu souboru, bez zadání souboru čte standardni vstup"<< "\n";
     std::cout << "\n";
 
     std::cout << "Ukazka spusteni" << "\n";
