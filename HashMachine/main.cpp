@@ -54,17 +54,17 @@ void readArguments(int argc, char *argv[]){
 
 void printHelp(){
     std::cout << "Program HashMachine v1.0" << "\n";
-    std::cout << "Semestrální práce KIV/BIT akademický rok 2015/16" << "\n";
-    std::cout << "Program slouzi k výpočtu zvolených hash funkcí." << "\n";
-    std::cout << "Implementovány: SHA-512 (sha512)." << "\n";
+    std::cout << "Semestralni prace KIV/BIT akademicky rok 2015/16" << "\n";
+    std::cout << "Program slouzi k vypoctu zvolenych hash funkci." << "\n";
+    std::cout << "Implementovany: SHA-512 (sha512)." << "\n";
     std::cout << "Radek VAIS" << "\n";
     std::cout << "\n";
     std::cout << "Napoveda ke spusteni:" << "\n";
     std::cout << "HashMachine [options]"<< "\n";
     std::cout << "Možné volby:"<< "\n";
-    std::cout << "\t" << "-h - zobrazí nápovědu" << "\n";
-    std::cout << "\t" << "-t<type> - nastaví typ hash funkce (výchozí sha512)"<< "\n";
-    std::cout << "\t" << "-f<filename> - nastavi cestu ke vstupnimu souboru, bez zadání souboru čte standardni vstup"<< "\n";
+    std::cout << "\t" << "-h - zobrazi napovedu" << "\n";
+    std::cout << "\t" << "-t<type> - nastavi typ hash funkce (vychozi sha512)"<< "\n";
+    std::cout << "\t" << "-f<filename> - nastavi cestu ke vstupnimu souboru, bez zadani souboru cte standardni vstup"<< "\n";
     std::cout << "\n";
 
     std::cout << "Ukazka spusteni" << "\n";
