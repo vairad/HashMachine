@@ -6,6 +6,7 @@
 #include "ihashstandard.h"
 
 #include "localcfile.h"
+#include "localstdin.h"
 #include "sha512.h"
 #include "noalgorithm.h"
 
@@ -95,13 +96,12 @@ int runConsoleApp(int argc, char *argv[]){
     IHashStandard *machine;
     prepareHashStandard(&machine);
 
+    IFile *file;
     if(!fileIsSet){
-        delete machine;
-        std::cout << "File was not set" << std::endl;
-        return 3;
+        file = new LocalStdIn();
+    }else{
+        file = new LocalCFile(filename);
     }
-
-    IFile *file = new LocalCFile(filename);
     if(file->isOk()){
         std::string *hash = machine->hash(file);
         std::cout << *hash << std::endl;
