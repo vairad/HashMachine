@@ -20,19 +20,24 @@ OBJECTS_DIR   = ./
 SOURCES       = ../HashMachine/main.cpp \
 		../HashMachine/sha512.cpp \
 		../HashMachine/localcfile.cpp \
-		../HashMachine/noalgorithm.cpp 
+		../HashMachine/noalgorithm.cpp \
+		../HashMachine/localstdin.cpp 
 OBJECTS       = main.o \
 		sha512.o \
 		localcfile.o \
-		noalgorithm.o
+		noalgorithm.o \
+		localstdin.o
+
 DIST          = ifile.h \
 		ihashstandard.h \
 		localcfile.h \
 		sha512.h \
-		noalgorithm.h ../HashMachine/main.cpp \
+		noalgorithm.h \
+		localstdin.h ../HashMachine/main.cpp \
 		../HashMachine/sha512.cpp \
 		../HashMachine/localcfile.cpp \
-		../HashMachine/noalgorithm.cpp
+		../HashMachine/noalgorithm.cpp \
+		../HashMachine/localstdin.cpp
 
 TARGET        = HashMachine
 
@@ -66,6 +71,9 @@ all: $(TARGET)
 
 clean:	
 	rm -f *.o
+
+cleanAll:	
+	rm -f *.o $(TARGET) *.log
 ####### Compile
 
 main.o: ../HashMachine/main.cpp ../HashMachine/ifile.h \
@@ -88,5 +96,9 @@ noalgorithm.o: ../HashMachine/noalgorithm.cpp ../HashMachine/noalgorithm.h \
 		../HashMachine/ihashstandard.h \
 		../HashMachine/ifile.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o noalgorithm.o ../HashMachine/noalgorithm.cpp
+
+localstdin.o: ../HashMachine/localstdin.cpp ../HashMachine/localstdin.h \
+		../HashMachine/ifile.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o localstdin.o ../HashMachine/localstdin.cpp
 
 
